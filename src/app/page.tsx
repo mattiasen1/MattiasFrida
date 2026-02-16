@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Countdown from "./components/Countdown";
 import PhotoMarquee from "./components/PhotoMarquee";
+import PhotosSection from "./components/PhotosSection";
 
 export default function HomePage() {
     const party = {
@@ -82,16 +83,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <PhotoMarquee
-          photos={[
-            { src: "/photos/1.png", alt: "Frida och Mattias" },
-            { src: "/photos/2.png", alt: "Throwback 2" },
-            { src: "/photos/3.png", alt: "Throwback 3" },
-            { src: "/photos/4.png", alt: "Throwback 4" },
-            { src: "/photos/5.png", alt: "Throwback 5" },
-          ]}
-          secondsPerLoop={24}
-        />
+        <PhotosSection />
         {/* Fun cards */}
         <section className="mt-10 grid gap-4 sm:grid-cols-3">
           <FunCard

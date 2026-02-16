@@ -16,8 +16,6 @@ export default function PhotoMarquee({
 
   return (
     <section className="mt-10">
-      <div className="mb-3 text-sm text-foreground/70">Throwbacks</div>
-
       <div className="marquee relative overflow-hidden rounded-2xl border border-border/60 bg-card/25 backdrop-blur">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background/80 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background/80 to-transparent" />
