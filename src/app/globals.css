@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens */
+:root {
+  /* Neutrals */
+  --background: 255 255 255;       /* white */
+  --foreground: 17 24 39;          /* slate-900-ish */
+
+  /* Surfaces */
+  --card: 255 255 255;
+  --card-foreground: 17 24 39;
+  --border: 229 231 235;           /* gray-200 */
+
+  /* Accents (pick vibes here) */
+  --accent: 236 72 153;            /* pink-500 */
+  --accent-foreground: 255 255 255;
+
+  /* Subtle background tint */
+  --bg-gradient-from: 255 247 237; /* orange-50 */
+  --bg-gradient-to: 253 242 248;   /* pink-50 */
+
+  /* Optional: rounding */
+  --radius: 16px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 10 10 12;        /* near-black */
+    --foreground: 243 244 246;     /* gray-100 */
+
+    --card: 17 24 39;             /* slate-900-ish */
+    --card-foreground: 243 244 246;
+    --border: 55 65 81;           /* gray-700 */
+
+    --accent: 244 114 182;        /* pink-400 */
+    --accent-foreground: 10 10 12;
+
+    --bg-gradient-from: 10 10 12;
+    --bg-gradient-to: 17 24 39;
+  }
+}
+
+/* Base */
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--bg-gradient-from)),
+    rgb(var(--bg-gradient-to))
+  );
+  color: rgb(var(--foreground));
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Nice defaults */
+a {
+  color: rgb(var(--foreground));
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Selection looks cute */
+::selection {
+  background: rgb(var(--accent));
+  color: rgb(var(--accent-foreground));
+}
+
+@keyframes photo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Om användaren vill minska rörelse: stäng av animationen */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}
