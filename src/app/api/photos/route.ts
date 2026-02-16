@@ -15,7 +15,7 @@ export async function GET() {
 
   const photos: { src: string; alt: string }[] = [];
 
-  for await (const b of container.listBlobsFlat({ prefix: "uploads/" })) {
+  for await (const b of container.listBlobsFlat()) {
     if (!isImage(b.name)) continue;
     photos.push({
       src: `${container.url}/${b.name}`,

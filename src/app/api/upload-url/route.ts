@@ -19,11 +19,11 @@ export async function POST(req: Request) {
   const service = BlobServiceClient.fromConnectionString(conn);
   const container = service.getContainerClient(containerName);
 
-  const blobName = `uploads/${Date.now()}-${crypto.randomUUID()}-${safe(String(filename))}`;
+  const blobName = `${Date.now()}-${crypto.randomUUID()}-${safe(String(filename))}`;
   const blob = container.getBlockBlobClient(blobName);
 
   const uploadUrl = await blob.generateSasUrl({
-    permissions: BlobSASPermissions.parse("cw"), // ✅ här är fixen
+    permissions: BlobSASPermissions.parse("cw"), 
     expiresOn: new Date(Date.now() + 10 * 60 * 1000),
     contentType: typeof contentType === "string" ? contentType : undefined,
   });

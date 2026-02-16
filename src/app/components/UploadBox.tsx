@@ -21,6 +21,7 @@ export default function UploadBox({ onDone }: { onDone: () => void }) {
       });
       const data = await r.json();
       if (!r.ok) throw new Error(data?.error ?? "Kunde inte skapa upload-url");
+      if (file.size > 10 * 1024 * 1024) throw new Error("Max 10 MB");
 
       const put = await fetch(data.uploadUrl, {
         method: "PUT",
@@ -32,7 +33,7 @@ export default function UploadBox({ onDone }: { onDone: () => void }) {
       });
       if (!put.ok) throw new Error("Uppladdningen misslyckades");
 
-      setMsg("Uppladdat! 🎉");
+      setMsg("Uppladdat!");
       setFile(null);
       onDone();
     } catch (e: any) {
@@ -55,7 +56,7 @@ export default function UploadBox({ onDone }: { onDone: () => void }) {
         <input
           value={pin}
           onChange={(e) => setPin(e.target.value)}
-          placeholder="PIN (om ni har)"
+          placeholder="PIN-kod"
           className="w-full rounded-xl border border-border bg-card/40 p-2 text-sm"
         />
         <button
