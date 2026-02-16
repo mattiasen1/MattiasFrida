@@ -7,12 +7,17 @@ type PhotoMarqueeProps = {
   secondsPerLoop?: number;
 };
 
+// Justera efter hur många kort som typiskt fyller en rad
+const MIN_LOOP_COUNT = 4;
+
 export default function PhotoMarquee({
   photos,
   secondsPerLoop = 22,
 }: PhotoMarqueeProps) {
-  const doubled = [...photos, ...photos];
   const rotations = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2", "-rotate-3"];
+
+  const shouldLoop = photos.length >= MIN_LOOP_COUNT;
+  const items = shouldLoop ? [...photos, ...photos] : photos;
 
   return (
     <section className="mt-10">
@@ -22,10 +27,15 @@ export default function PhotoMarquee({
 
         <div
           className="marquee-track flex w-max gap-4 p-4 will-change-transform"
-          style={{ animation: `photo-marquee ${secondsPerLoop}s linear infinite` }}
+          style={
+            shouldLoop
+              ? { animation: `photo-marquee ${secondsPerLoop}s linear infinite` }
+              : { animation: "none" }
+          }
         >
-          {doubled.map((p, idx) => {
-            const isSecondHalf = idx >= photos.length;
+          {items.map((p, idx) => {
+            const isSecondHalf = shouldLoop && idx >= photos.length;
+
             return (
               <div
                 key={`${p.src}-${idx}`}
@@ -46,6 +56,7 @@ export default function PhotoMarquee({
                     className="object-cover"
                     sizes="(max-width: 640px) 150px, 180px"
                     priority={idx < 2}
+                    unoptimized
                   />
                 </div>
               </div>
