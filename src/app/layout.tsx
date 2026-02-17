@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Frida & Mattias 2026",
   description: "KALAS",
+  icons: {
+    icon: "/icon.png"
+  }
 };
 
 export default function RootLayout({
