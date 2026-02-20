@@ -57,29 +57,33 @@ export default function MessageBox() {
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {/* Name */}
         <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Ditt namn"
-          className="w-full rounded-xl border border-border bg-card/40 p-3 text-sm outline-none focus:ring-2 focus:ring-pink-400/60"
-          maxLength={40}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Ditt namn"
+            className="order-1 w-full rounded-xl border border-border bg-card/40 p-3 text-sm outline-none focus:ring-2 focus:ring-pink-400/60"
+            maxLength={40}
         />
-        <button
-          onClick={submit}
-          disabled={busy}
-          className="rounded-xl bg-pink-500 px-3 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-pink-600 disabled:opacity-50"
-        >
-          {busy ? "Skickar..." : "Skicka hälsning"}
-        </button>
-      </div>
 
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Din hälsning…"
-        className="mt-3 min-h-[120px] w-full rounded-xl border border-border bg-card/40 p-3 text-sm outline-none focus:ring-2 focus:ring-pink-400/60"
-        maxLength={500}
-      />
+        {/* Message */}
+        <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Din hälsning…"
+            className="order-2 min-h-[120px] w-full rounded-xl border border-border bg-card/40 p-3 text-sm outline-none focus:ring-2 focus:ring-pink-400/60 sm:col-span-2"
+            maxLength={500}
+        />
+
+        {/* Send */}
+        <button
+            onClick={submit}
+            disabled={busy}
+            className="order-3 rounded-xl bg-pink-500 px-3 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-pink-600 disabled:opacity-50 sm:col-span-2"
+        >
+            {busy ? "Skickar..." : "Skicka hälsning"}
+        </button>
+        </div>
 
       {status && <div className="mt-3 text-sm text-foreground/75">{status}</div>}
     </section>
