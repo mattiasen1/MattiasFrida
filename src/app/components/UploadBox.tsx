@@ -55,6 +55,7 @@ export default function UploadBox({ onDone }: { onDone: () => void }) {
         />
         <input
           value={pin}
+          type="password"
           onChange={(e) => setPin(e.target.value)}
           placeholder="PIN-kod"
           className="w-full rounded-xl border border-border bg-card/40 p-2 text-sm"

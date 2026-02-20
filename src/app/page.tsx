@@ -1,18 +1,19 @@
 // app/page.tsx
 import Link from "next/link";
 import Countdown from "./components/Countdown";
-import PhotoMarquee from "./components/PhotoMarquee";
-import PhotosSection from "./components/PhotosSection";
+import PhotosGate from "./components/PhotosGate";
+import MessageBox from "./components/MessageBox";
 
 export default function HomePage() {
     const party = {
       title: "Vi fyller 30!",
       names: "Frida & Mattias",
       date: "21 mars 2026",
-      time: "17:00 – 22:00 (dans till 01:00)",
+      time: "17:00 - 22:00 (dans till 01:00)",
       locationName: "Gamla Stadshotellet · Heart & Bones",
       address: "Drottninggatan 9, 753 10 Uppsala",
     };
+    const rsvpUrl = "https://docs.google.com/forms/d/e/1FAIpQLSd4XCuI-IEO-bLmo4vWD4E83dChuXzfZk9A4gVeoY1j6ghwDQ/viewform"
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
@@ -25,12 +26,6 @@ export default function HomePage() {
       </div>
 
       <div className="relative mx-auto max-w-4xl px-5 py-14 sm:py-20">
-        {/* Top tag */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-sm backdrop-blur">
-          <span aria-hidden>🎉</span>
-          <span className="opacity-90">Födelsedagskalas</span>
-        </div>
-        {/* Hero */}
         <header className="mt-6">
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
             {party.title}
@@ -43,6 +38,14 @@ export default function HomePage() {
             <Pill>📅 {party.date}</Pill>
             <Pill>🕔 Start kl. 17:00</Pill>
             <Pill>📍 Uppsala</Pill>
+            <div className="ml-auto">
+              <Link
+                    href="/party"
+                    className="rounded-xl border border-border/70 bg-card/40 px-3 py-2 text-center text-sm font-semibold backdrop-blur"
+                  >
+                    Projektorläge
+              </Link>
+            </div>
           </div>
         </header>
 
@@ -65,25 +68,48 @@ export default function HomePage() {
 
             {/* CTA */}
             <div className="w-full sm:w-[280px]">
-              <div className="mt-3 grid grid-cols-2 gap-3">
+              <div className="mt-3 grid gap-3">
+                <a
+                  href={rsvpUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="
+                    inline-flex
+                    items-center
+                    justify-center
+                    rounded-lg
+                    bg-pink-500
+                    px-1
+                    py-2
+                    text-sm
+                    font-semibold
+                    text-white
+                    no-underline
+                    shadow-md
+                    transition
+                    hover:bg-pink-600
+                    hover:shadow-pink-500/40
+                    hover:no-underline
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-pink-400
+                  "
+                >
+                  Anmälan
+                </a>
+                {/*
                 <Link
                   href="/info"
                   className="rounded-xl border border-border/70 bg-card/40 px-3 py-2 text-center text-sm font-semibold backdrop-blur"
                 >
                   Praktisk info
-                </Link>
-                <Link
-                  href="/playlist"
-                  className="rounded-xl border border-border/70 bg-card/40 px-3 py-2 text-center text-sm font-semibold backdrop-blur"
-                >
-                  Lägg till låt
-                </Link>
+                </Link>*/}
               </div>
             </div>
           </div>
         </section>
-
-        <PhotosSection />
+        <MessageBox />
+        <PhotosGate startsAtISO="2026-03-21T17:00:00+01:00" />
         {/* Fun cards */}
         <section className="mt-10 grid gap-4 sm:grid-cols-3">
           <FunCard
@@ -99,7 +125,7 @@ export default function HomePage() {
           <FunCard
             icon="💃"
             title="Kalas"
-            body="Fest, skratt, bra mat, bra musik och ännu bättre sällskap."
+            body="Fest, skratt, bra mat, bra musik, bra underhållning och en jäkla massa kul!"
           />
         </section>
 

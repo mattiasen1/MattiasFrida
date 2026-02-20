@@ -26,12 +26,13 @@ export default function Countdown({ targetISO }: CountdownProps) {
   if (now === null) {
     return (
       <div className="mt-8 rounded-2xl border border-border/60 bg-card/45 p-5 backdrop-blur">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="text-sm text-foreground/70">Nedräkning</div>
             <div className="text-lg font-semibold">Till kalaset!</div>
           </div>
-          <div className="flex gap-2 text-center font-mono">
+
+          <div className="flex w-full flex-wrap justify-start gap-2 sm:w-auto sm:justify-center sm:gap-3">
             <TimeBox label="dagar" value="--" />
             <TimeBox label="tim" value="--" />
             <TimeBox label="min" value="--" />
@@ -54,15 +55,15 @@ export default function Countdown({ targetISO }: CountdownProps) {
 
   return (
     <div className="mt-8 rounded-2xl border border-border/60 bg-card/45 p-5 backdrop-blur">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="text-sm text-foreground/70">Nedräkning</div>
           <div className="text-lg font-semibold">
-            {isOver ? "Det är dags! 🥳" : "Till kalaset!"}
+            {isOver ? "Det är dags!!!!" : "Till kalaset!"}
           </div>
         </div>
 
-        <div className="flex gap-2 text-center font-mono">
+        <div className="flex w-full flex-wrap justify-start gap-2 sm:w-auto sm:justify-center sm:gap-3">
           <TimeBox label="dagar" value={String(days)} />
           <TimeBox label="tim" value={pad2(hours)} />
           <TimeBox label="min" value={pad2(minutes)} />
@@ -75,8 +76,10 @@ export default function Countdown({ targetISO }: CountdownProps) {
 
 function TimeBox({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-[64px] rounded-xl border border-border/60 bg-background/40 px-3 py-2">
-      <div className="text-xl font-semibold leading-none">{value}</div>
+    <div className="min-w-[72px] flex-1 rounded-xl border border-border/60 bg-background/40 px-3 py-2 text-center sm:min-w-[92px] sm:flex-none sm:px-4 sm:py-3">
+      <div className="text-2xl font-semibold tabular-nums leading-none sm:text-3xl">
+        {value}
+      </div>
       <div className="mt-1 text-xs text-foreground/60">{label}</div>
     </div>
   );
