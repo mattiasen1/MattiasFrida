@@ -76,7 +76,7 @@ export default function HalsningarPage() {
 
       {/* Floating canvas */}
         <section className="relative w-full px-4 pb-20 sm:px-6 lg:px-10 xl:px-16">
-            {loading && (
+            {loading && messages.length === 0 && (
                 <div className="mb-6 rounded-2xl border border-border/60 bg-card/30 p-4 text-sm text-foreground/70 backdrop-blur">
                 Hämtar hälsningar…
                 </div>
@@ -126,6 +126,9 @@ function MasonryCard({ m }: { m: GuestMessage }) {
         <div className="font-semibold">{m.name}</div>
         <div className="text-xs text-foreground/55">
           {new Date(m.createdAt).toLocaleString("sv-SE", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "2-digit",
             hour: "2-digit",
             minute: "2-digit",
           })}
